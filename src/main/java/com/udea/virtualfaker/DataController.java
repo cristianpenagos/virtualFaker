@@ -49,4 +49,19 @@ public class DataController {
         }
         return currencies;
     }
+    @GetMapping("/aviation")
+    public JsonNode getRandomAviation(){
+        var objectMapper = new ObjectMapper();
+        var faker = new Faker(new Locale("en-US"));
+        var aviations = objectMapper.createArrayNode();
+        for(var i=0; i<10; i++){
+            var aviation = faker.aviation();
+            aviations.add(objectMapper.createObjectNode()
+                    .put("aircraft", aviation.aircraft())
+                    .put("airport", aviation.airport())
+                    .put("METAR", aviation.METAR()));
+
+        }
+        return aviations;
+    }
 }
