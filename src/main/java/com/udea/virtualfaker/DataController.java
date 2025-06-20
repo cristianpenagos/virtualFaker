@@ -1,5 +1,6 @@
 package com.udea.virtualfaker;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javafaker.Faker;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,15 +26,12 @@ public class DataController {
         var nations = objectMapper.createArrayNode();
         for(var i=0; i<10; i++){
             var nation = faker.nation();
-            nations.add(objectMapper.createArrayNode()
+            nations.add(objectMapper.createObjectNode()
                     .put("nationality", nation.nationality())
-                            .put("capitalCity", nation.capitalCity())
+                    .put("capitalCity", nation.capitalCity())
                     .put("bandera", nation.flag())
-                    .put("languaje", nation.language()))
-
+                    .put("languaje", nation.language()));
         }
         return nations;
-
-
     }
 }
