@@ -13,14 +13,15 @@ public class DataController {
 
     @GetMapping("/")
     public String healtCheck(){
-        return "HEALT CHECK OK::: Hola desde el Servidor";
+        return "HEALTH CHECK OK::: Hola desde el Servidor";
     }
     @GetMapping("/version")
     public String version(){
         return "Version is 1.0.0::: Mira no mas que chulada";
     }
+
     @GetMapping("/nations")
-    public JsonNode nations(){
+    public JsonNode getRandomNations(){
         var objectMapper = new ObjectMapper();
         var faker = new Faker(new Locale("en-US"));
         var nations = objectMapper.createArrayNode();
@@ -33,5 +34,19 @@ public class DataController {
                     .put("languaje", nation.language()));
         }
         return nations;
+    }
+    @GetMapping("/currencies")
+    public JsonNode getRandomCurrencies(){
+        var objectMapper = new ObjectMapper();
+        var faker = new Faker(new Locale("en-US"));
+        var currencies = objectMapper.createArrayNode();
+        for(var i=0; i<10; i++){
+            var currency = faker.currency();
+            currencies.add(objectMapper.createObjectNode()
+                    .put("name", currency.name())
+                    .put("code", currency.code()));
+
+        }
+        return currencies;
     }
 }
