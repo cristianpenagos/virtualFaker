@@ -40,7 +40,7 @@ public class DataController {
         var objectMapper = new ObjectMapper();
         var faker = new Faker(new Locale("en-US"));
         var currencies = objectMapper.createArrayNode();
-        for(var i=0; i<10; i++){
+        for(var i=0; i<20; i++){
             var currency = faker.currency();
             currencies.add(objectMapper.createObjectNode()
                     .put("name", currency.name())
@@ -54,7 +54,7 @@ public class DataController {
         var objectMapper = new ObjectMapper();
         var faker = new Faker(new Locale("en-US"));
         var aviations = objectMapper.createArrayNode();
-        for(var i=0; i<10; i++){
+        for(var i=0; i<20; i++){
             var aviation = faker.aviation();
             aviations.add(objectMapper.createObjectNode()
                     .put("aircraft", aviation.aircraft())
