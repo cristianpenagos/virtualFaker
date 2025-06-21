@@ -56,4 +56,10 @@ class VirtualFakerApplicationTests {
         assertTrue(executionTime < 2000);
 
     }
+
+    @Test
+    void aviationLength(){
+        Integer aviationLength = dataController.getRandomAviation().size();
+        assertEquals(20, aviationLength);
+    }
 }
