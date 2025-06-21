@@ -43,4 +43,17 @@ class VirtualFakerApplicationTests {
             assertTrue(code.matches("[A-Z]{3}"));
         }
     }
+
+
+    @Test
+    public void testRandomNationsPerformance(){
+        DataController controller = new DataController();
+        long startTime = System.currentTimeMillis();
+        controller.getRandomNations();
+        long endTime = System.currentTimeMillis();
+        long executionTime = endTime - startTime;
+        System.out.println(executionTime);
+        assertTrue(executionTime < 2000);
+
+    }
 }
